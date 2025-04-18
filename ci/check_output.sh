@@ -12,7 +12,7 @@ for f in ` find . -name regression.diffs ` ; do
 done
 
 # check core dumps if any
-cores=$(find /tmp/cores-$CI_COMMIT_SHA-$TIMESTAMP/ -name '*.core' 2>/dev/null)
+cores=$(find /tmp/cores-$CI_COMMIT_SHA-$CI_PIPELINE_CREATED_AT/ -name '*.core' 2>/dev/null)
 
 if [ -n "$cores" ]; then
 	for corefile in $cores ; do
@@ -25,6 +25,6 @@ if [ -n "$cores" ]; then
 	done
 fi
 
-rm -rf /tmp/cores-$CI_COMMIT_SHA-$TIMESTAMP
+rm -rf /tmp/cores-$CI_COMMIT_SHA-$CI_PIPELINE_CREATED_AT
 
 exit $status
