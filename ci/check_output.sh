@@ -12,7 +12,9 @@ for f in ` find . -name regression.diffs ` ; do
 done
 
 # check core dumps if any
-cores=$(find /tmp/cores-$CI_COMMIT_SHA-$CI_PIPELINE_CREATED_AT/ -name '*.core' 2>/dev/null)
+# due to CI limitations only one, latest core dump, can be preserved in a each directory
+# e.g. we cannot change core_pattern
+cores=$(find . -name 'core' 2>/dev/null)
 
 if [ -n "$cores" ]; then
 	for corefile in $cores ; do

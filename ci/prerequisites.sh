@@ -5,7 +5,7 @@ set -eu
 # print the hostname to be able to identify runner by logs
 echo "HOSTNAME=`hostname`"
 echo "TIMESTAMP=$CI_PIPELINE_CREATED_AT"
-cat /proc/sys/kernel/core_pattern
+echo "core_pattern: $(cat /proc/sys/kernel/core_pattern)"
 
 apt-get update -qq
 DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
